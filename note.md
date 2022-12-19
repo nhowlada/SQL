@@ -16,8 +16,9 @@
 
 
 * INSERT
-  * INSERT INTO <TABLE> (<COLUMNS>) VALUES (<VALUES>)
-
+```SQL
+  INSERT INTO <TABLE> (<COLUMNS>) VALUES (<VALUES>)
+```
 * WHERE 
 * GROUP BY
 * HAVING
@@ -27,10 +28,25 @@
 
 * JOIN
   * cross join
+  ```SQL
+  SELECT * from table1, table2
+  ```
   * inner join
+  ```SQL
+  SELECT * from table1 a inner join table2 b on a.col=b.col
+  ```
   * left join
+  ```SQL
+  SELECT * from table1 a left join table2 b on a.col=b.col
+  ```
   * right join
+  ```SQL
+  SELECT * from table1 a right join table2 b on a.col=b.col
+  ```
   * full outer join
+  ```SQL
+  SELECT * from table1 a full outer join table2 b on a.col=b.col
+  ```
   * In ***INNER JOIN*** inside the ***ON*** clause if you have ***AND*** condition you can use ***WHERE*** clause for the ***AND*** condition. However, in ***OTHER JOIN*** operation is better to use ***AND*** condition inside the ***ON*** clauser
 
 * STRING FUNCTION
@@ -43,7 +59,9 @@
 
 
 * ORDER OF EXECUTION
-  * FROM -> WHERE -> GROUP BY -> HAVING -> SELECT -> ORDER BY -> LIMT
+```SQL
+  FROM -> WHERE -> GROUP BY -> HAVING -> SELECT -> ORDER BY -> LIMT
+```
 
 
 * WINDOW FUNCTION
@@ -67,4 +85,7 @@
     * LAG
     * LEAD
 * NULL handelling in better way
-  * Always replace the NULL with the **COALESCE** function. Ex, *SELECT COLUMN FROM TABLE WHERE COALESCE(COL,'AA') != COALESCE(COL,'BB') (Instead WHERE COL IS NULL) *
+  * Always replace the NULL with the **COALESCE** function. Ex, *
+  ```SQL
+    SELECT COLUMN FROM TABLE WHERE COALESCE(COL,'AA') != COALESCE(COL,'BB') (Instead WHERE COL IS NULL)
+  ```
