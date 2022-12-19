@@ -45,3 +45,16 @@
 -- 3. From question 2 : when stat_cd is not euqal to state_cd then data issues else good data as stae_cd_status
 --  [Note NUll from left side is not equal NUll from other side  >> means lets sayd NULL value from fact table if compared
 --  to NULL Value to right table then it should be data issues]
+
+select *, 
+CASE 
+WHEN COALESCE(a.stat_cd, 'AA') != COALESCE(a.stat_cd, 'BB') then 'Data issues'
+else 'Good data'
+END as stae_cd_status
+
+from (
+    select cust_id,stat_cd,tran_date, tran_ammt, sum(tran_ammt) over(partition by tran_date), rank() over(partition by tran_date order by tran_ammt desc) as rank_no
+    from cards_ingest.tran_fact
+    ) a
+    inner join cards_ingest.cust_dim_details b on a.cust_id=b.cust_id and (a.tran_date between b.start_date and b.end_date)
+    where a.rank_no=2
